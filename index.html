@@ -309,7 +309,7 @@ const APPS = [
   {
     id:'pqahc', name:'PQ-AHC', sub:'AI 인문학 역량 검사 · Peoplequake Lab 검사 도구 2',
     cat:'business', art:'quadrant', cap:'2축 4유형 배정',
-    date:'2026-08-01', dateEst:true, dateLabel:'배포',
+    date:'2026-08-01', dateEst:false, dateLabel:'배포',
     status:'live', statusLabel:'운영 중 · v2',
     url:'https://peoplequake-lab.github.io/ai-humanities-quiz/', repo:'',
     why:'검사를 외부 설문 플랫폼에 올려두면 두 가지가 남의 손에 넘어갑니다. 첫째는 문항과 채점 키입니다. 검사 도구의 핵심 자산이 제3자 서버에 상주하고, 반출 가능 여부와 형식이 그쪽 정책에 달립니다. 둘째는 결과 화면입니다. 이 화면이 곧 리드 전환 지점인데 문구 하나 고칠 권한이 없었습니다. 구독이 끊기거나 서비스가 종료되면 검사 자체가 멈추는 벤더 종속(vendor lock-in) 구조라고 판단했습니다. 그래서 외부 런타임 의존성이 없는 정적 배포로 옮겨 문항·채점 로직·결과 화면의 통제권을 전부 회수했습니다. 전환 비용은 지금 한 번 치르는 개발 시간이고, 종속 비용은 서비스가 존재하는 내내 발생합니다.',
@@ -391,7 +391,7 @@ APPS.forEach((a,i)=>{
     '<span class="c-cap">'+a.cap+'</span>'+
     '<span class="c-name">'+a.name+'</span>'+
     '<span class="c-sub">'+a.sub+'</span>'+
-    '<span class="c-foot"><span'+(a.dateEst?' class="est"':'')+'>'+a.dateLabel+' '+a.date+(a.dateEst?' :'')+'</span>'+
+    '<span class="c-foot"><span'+(a.dateEst?' class="est"':'')+'>'+a.dateLabel+' '+a.date+(a.dateEst?' (추정)':'')+'</span>'+
       '<span>기술 '+a.stack.length+'종</span></span>';
   b.addEventListener('click',()=>openDetail(a.id));
   grid.appendChild(b);
