@@ -95,9 +95,7 @@ h1 span{color:var(--brass)}
 .chips button:hover{color:var(--text);border-color:#33496B}
 .chips button .n{font-size:10px;color:var(--dim)}
 .chips button[aria-pressed="true"]{color:var(--text);border-color:currentColor;background:rgba(255,255,255,.04)}
-.chips button[data-k="business"][aria-pressed="true"]{color:var(--brass);box-shadow:inset 0 -2px 0 var(--brass)}
-.chips button[data-k="daily"][aria-pressed="true"]{color:var(--brass);box-shadow:inset 0 -2px 0 var(--brass)}
-.chips button[data-k="care"][aria-pressed="true"]{color:var(--sage);box-shadow:inset 0 -2px 0 var(--sage)}
+.chips button[aria-pressed="true"]{color:var(--c,var(--text-2));border-color:currentColor;background:rgba(255,255,255,.04);box-shadow:inset 0 -2px 0 currentColor}
 .chips button[data-k="all"][aria-pressed="true"]{box-shadow:inset 0 -2px 0 var(--text-2)}
 
 /* ─── 정사각 카드 그리드 ─── */
@@ -379,12 +377,13 @@ $('#foot').textContent = 'Peoplequake Lab 개발 허브 사이트입니다 ㅣ P
 const grid = $('#grid');
 APPS.forEach((a,i)=>{
   const cat = CATS[a.cat];
-  const raw = getComputedStyle(document.documentElement).getPropertyValue(a.cat==='business'?'--brass':'--sage').trim();
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(cat.color.replace('var(','').replace(')','')).trim();
   const b = document.createElement('button');
   b.className='card'; b.type='button'; b.dataset.cat=a.cat; b.dataset.id=a.id;
   b.setAttribute('aria-expanded','false');
   b.style.setProperty('--c', cat.color);
   b.style.transitionDelay = (i*90)+'ms';
+  if(c.k!=='all') b.style.setProperty('--c', CATS[c.k].color);
   b.innerHTML =
     '<span class="c-top"><span class="c-cat">'+cat.en+' ／ '+cat.label+'</span>'+
       '<span class="c-state '+(a.status==='live'?'live':'')+'"><i></i>'+
