@@ -96,6 +96,7 @@ h1 span{color:var(--brass)}
 .chips button .n{font-size:10px;color:var(--dim)}
 .chips button[aria-pressed="true"]{color:var(--text);border-color:currentColor;background:rgba(255,255,255,.04)}
 .chips button[data-k="business"][aria-pressed="true"]{color:var(--brass);box-shadow:inset 0 -2px 0 var(--brass)}
+.chips button[data-k="daily"][aria-pressed="true"]{color:var(--brass);box-shadow:inset 0 -2px 0 var(--brass)}
 .chips button[data-k="care"][aria-pressed="true"]{color:var(--sage);box-shadow:inset 0 -2px 0 var(--sage)}
 .chips button[data-k="all"][aria-pressed="true"]{box-shadow:inset 0 -2px 0 var(--text-2)}
 
@@ -274,7 +275,7 @@ const FIRST_BUILD = '2026-08-01';
 
 const CATS = {
   business:{ label:'사업 자산', en:'BUSINESS', color:'var(--brass)' },
-  business:{ label:'일상', en:'DAILY', color:'var(--brass)' },
+  daily:{ label:'일상', en:'DAILY', color:'var(--brass)' },
   care:    { label:'돌봄', en:'CARE',   color:'var(--sage)'  }
 };
 
