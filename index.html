@@ -23,6 +23,7 @@
   --dim:#7286A5;
   --brass:#D4AC55;
   --sage:#7FB39C;
+  --slate:#8FA6C4;
   --sans:'IBM Plex Sans KR',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
   --mono:'IBM Plex Mono','IBM Plex Sans KR',ui-monospace,monospace;
 }
@@ -94,7 +95,6 @@ h1 span{color:var(--brass)}
 }
 .chips button:hover{color:var(--text);border-color:#33496B}
 .chips button .n{font-size:10px;color:var(--dim)}
-.chips button[aria-pressed="true"]{color:var(--text);border-color:currentColor;background:rgba(255,255,255,.04)}
 .chips button[aria-pressed="true"]{color:var(--c,var(--text-2));border-color:currentColor;background:rgba(255,255,255,.04);box-shadow:inset 0 -2px 0 currentColor}
 .chips button[data-k="all"][aria-pressed="true"]{box-shadow:inset 0 -2px 0 var(--text-2)}
 
@@ -273,7 +273,7 @@ const FIRST_BUILD = '2026-08-01';
 
 const CATS = {
   business:{ label:'사업 자산', en:'BUSINESS', color:'var(--brass)' },
-  daily:{ label:'일상', en:'DAILY', color:'var(--brass)' },
+  daily:{ label:'일상', en:'DAILY', color:'var(--slate)' },
   care:    { label:'돌봄', en:'CARE',   color:'var(--sage)'  }
 };
 
@@ -383,7 +383,6 @@ APPS.forEach((a,i)=>{
   b.setAttribute('aria-expanded','false');
   b.style.setProperty('--c', cat.color);
   b.style.transitionDelay = (i*90)+'ms';
-  if(c.k!=='all') b.style.setProperty('--c', CATS[c.k].color);
   b.innerHTML =
     '<span class="c-top"><span class="c-cat">'+cat.en+' ／ '+cat.label+'</span>'+
       '<span class="c-state '+(a.status==='live'?'live':'')+'"><i></i>'+
@@ -436,6 +435,7 @@ const chips = $('#chips');
   const b=document.createElement('button');
   b.type='button'; b.dataset.k=c.k;
   b.setAttribute('aria-pressed', i===0?'true':'false');
+  if(c.k!=='all') b.style.setProperty('--c', CATS[c.k].color);
   b.innerHTML=c.t+'<span class="n">'+n+'</span>';
   b.addEventListener('click',()=>{
     chips.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
