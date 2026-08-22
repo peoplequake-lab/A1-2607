@@ -391,7 +391,7 @@ APPS.forEach((a,i)=>{
     '<span class="c-cap">'+a.cap+'</span>'+
     '<span class="c-name">'+a.name+'</span>'+
     '<span class="c-sub">'+a.sub+'</span>'+
-    '<span class="c-foot"><span'+(a.dateEst?' class="est"':'')+'>'+a.dateLabel+' '+a.date+(a.dateEst?' (추정)':'')+'</span>'+
+    '<span class="c-foot"><span'+(a.dateEst?' class="est"':'')+'>'+a.dateLabel+' '+a.date+(a.dateEst?' :'')+'</span>'+
       '<span>기술 '+a.stack.length+'종</span></span>';
   b.addEventListener('click',()=>openDetail(a.id));
   grid.appendChild(b);
