@@ -274,7 +274,8 @@ const FIRST_BUILD = '2026-08-01';
 
 const CATS = {
   business:{ label:'사업 자산', en:'BUSINESS', color:'var(--brass)' },
-  care:    { label:'일상 · 돌봄', en:'CARE',   color:'var(--sage)'  }
+  business:{ label:'일상', en:'DAILY', color:'var(--brass)' },
+  care:    { label:'돌봄', en:'CARE',   color:'var(--sage)'  }
 };
 
 const GROUPS = [
@@ -287,7 +288,7 @@ const GROUPS = [
 const APPS = [
   {
     id:'alive', name:'생존신고소', sub:'하루 한 번 도장으로 안부를 남기는 앱',
-    cat:'care', art:'stamp', cap:'하루 한 칸 · 7일 출석판',
+    cat:'daily', art:'stamp', cap:'하루 한 칸 · 7일 출석판',
     date:'2026-08-15', dateEst:false, dateLabel:'배포',
     status:'live', statusLabel:'운영 중 · 슬롯 형태',
     url:'https://peoplequake-lab.github.io/alive/', repo:'',
