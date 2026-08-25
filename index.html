@@ -219,6 +219,7 @@ footer p{font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.9
 @media(max-width:900px){
   .grid{grid-template-columns:repeat(2,1fr)}
   .wrap{padding:0 22px}
+  .grid > .detail{grid-column:1/-1;margin-top:0;margin-bottom:2px}
   .d-body{grid-template-columns:1fr;gap:0}
   .d-side{border-left:0;padding-left:0;padding-top:6px;margin-top:4px}
 }
@@ -401,10 +402,24 @@ APPS.forEach((a,i)=>{
 /* ─── 상세 ─── */
 const detail = $('#detail');
 let openId = null;
+
+/* 좁은 화면(카드 1열)에서는 상세를 클릭한 카드 바로 아래로 옮긴다.
+   넓은 화면에서는 원래대로 카드 목록 전체 아래에 둔다. */
+const narrow = window.matchMedia('(max-width:900px)');
+function placeDetail(){
+  if(!openId) return;
+  const card = grid.querySelector('.card[data-id="'+openId+'"]');
+  if(!card) return;
+  if(narrow.matches) card.insertAdjacentElement('afterend', detail);
+  else grid.insertAdjacentElement('afterend', detail);
+}
+narrow.addEventListener('change', placeDetail);
+
 function openDetail(id){
   if(openId===id){ closeDetail(); return; }
   const a = APPS.find(x=>x.id===id);
   openId = id;
+  placeDetail();
   document.querySelectorAll('.card').forEach(c=>c.setAttribute('aria-expanded', c.dataset.id===id?'true':'false'));
   detail.innerHTML =
     '<div class="d-head"><h3>'+a.name+'<em>'+a.sub+'</em></h3>'+
@@ -426,6 +441,7 @@ function openDetail(id){
 }
 function closeDetail(){
   openId=null; detail.classList.remove('on'); detail.innerHTML='';
+  grid.insertAdjacentElement('afterend', detail);
   document.querySelectorAll('.card').forEach(c=>c.setAttribute('aria-expanded','false'));
 }
 
