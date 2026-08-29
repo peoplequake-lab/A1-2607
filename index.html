@@ -377,21 +377,21 @@ const ART = {
   },
   ripple(c){
     const cx = 50, cy = 50;
-    const rings = [42, 27, 13];       // ← 번짐의 세 단계
+    const rings = [42, 27, 13];
     let s = '<svg viewBox="0 0 100 100" aria-hidden="true">';
     rings.forEach((r, i) => {
-      s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+c+'" fill-opacity="'+(.035 + i*.025)+'" '+
-           'stroke="'+c+'" stroke-width="1" stroke-opacity="'+(.30 + i*.22)+'" '+
+      s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+c+'" fill-opacity="'+(.05 + i*.05)+'" '+
+           'stroke="'+c+'" stroke-width="1.4" stroke-opacity="'+(.62 + i*.14)+'" '+
            'style="transition-delay:'+((rings.length-1-i)*140)+'ms"/>';
     });
-    // 아직 닿지 않은 점들
-    const dots = [[20,26],[80,22],[16,72],[84,74],[50,12],[50,88]];
+    const dots = [[20,26],[80,22],[16,72],[84,74],[50,10],[50,90]];
     dots.forEach((p, i) => {
-      s += '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="2.6" fill="none" '+
-           'stroke="#2A3D5C" stroke-width="1" '+
+      s += '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.2" fill="none" '+
+           'stroke="#2A3D5C" stroke-width="1.2" '+
            'style="transition-delay:'+(420 + i*60)+'ms"/>';
     });
-    s += '<g class="pulse"><circle cx="'+cx+'" cy="'+cy+'" r="4" fill="'+c+'"/></g>';
+    s += '<g class="pulse"><circle cx="'+cx+'" cy="'+cy+'" r="12" fill="'+c+'" fill-opacity=".18"/>'+
+         '<circle cx="'+cx+'" cy="'+cy+'" r="6" fill="'+c+'"/></g>';
     return s+'</svg>';
   }
 };
