@@ -289,7 +289,7 @@ const GROUPS = [
 const APPS = [
   {
     id:'beonjim', name:'번짐 Beonjim', sub:'한 번의 입력으로 연쇄를 만드는 캐주얼 웹 게임',
-    cat:'daily', art:'stamp', cap:'연쇄 반응 · 캐주얼 웹 게임',
+    cat:'daily', art:'ripple', cap:'연쇄 반응 · 캐주얼 웹 게임',
     date:'2026-08-30', dateEst:false, dateLabel:'배포',
     status:'live', statusLabel:'운영 중',
     url:'https://peoplequake-lab.github.io/beonjim', repo:'',
@@ -374,6 +374,24 @@ const ART = {
       '<g class="pulse"><circle cx="72" cy="30" r="12" fill="'+c+'" fill-opacity=".12"/>'+
       '<circle cx="72" cy="30" r="5" fill="'+c+'"/></g>'+
       '<text x="8" y="14" font-family="monospace" font-size="7" fill="#5A7096">유형</text></svg>';
+  ripple(c){
+    const cx = 50, cy = 50;
+    const rings = [42, 27, 13];       // ← 번짐의 세 단계
+    let s = '<svg viewBox="0 0 100 100" aria-hidden="true">';
+    rings.forEach((r, i) => {
+      s += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+c+'" fill-opacity="'+(.035 + i*.025)+'" '+
+           'stroke="'+c+'" stroke-width="1" stroke-opacity="'+(.30 + i*.22)+'" '+
+           'style="transition-delay:'+((rings.length-1-i)*140)+'ms"/>';
+    });
+    // 아직 닿지 않은 점들
+    const dots = [[20,26],[80,22],[16,72],[84,74],[50,12],[50,88]];
+    dots.forEach((p, i) => {
+      s += '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="2.6" fill="none" '+
+           'stroke="#2A3D5C" stroke-width="1" '+
+           'style="transition-delay:'+(420 + i*60)+'ms"/>';
+    });
+    s += '<g class="pulse"><circle cx="'+cx+'" cy="'+cy+'" r="4" fill="'+c+'"/></g>';
+    return s+'</svg>';
   }
 };
 
